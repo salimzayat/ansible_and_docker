@@ -1,0 +1,16 @@
+---
+- hosts: local
+  tasks:
+    - name: install Docker
+      apt: pkg=docker.io state=installed update_cache=true
+      notify: 
+        - verify Docker install
+
+  handlers:
+    - name: verify Docker install
+      shell: sudo docker info 
+      register: cmd_result
+
+    - assert:
+        that:
+          - "'comand not found' not in cmd_result.stderr"

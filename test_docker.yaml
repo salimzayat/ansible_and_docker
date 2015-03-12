@@ -1,0 +1,19 @@
+---
+- hosts: local
+  tasks:
+    - name: download ubuntu image
+      shell: /usr/bin/docker pull ubuntu
+      register: ubuntu_image_installed
+
+    - name: run test app
+      when: ubuntu_image_installed|success
+      shell: sudo /usr/bin/docker run ubuntu /bin/echo 'Hello world'
+      register: cmd_result
+
+    - assert:
+        that:
+          - "'Hello world' in cmd_result.stdout"
+
+
+
+
