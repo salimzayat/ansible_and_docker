@@ -1,11 +1,13 @@
 {
   "nodes": {
+    // start with the master
     "master.example.com": {
       ":ip": "192.168.32.5",
       "ports": [],
       ":memory": 1024,
       ":bootstrap": "bootstrap-master.sh"
     },
+    // and *now* all the agents
     "agent.example.com": {
       ":ip": "192.168.32.10",
       "ports": [],
