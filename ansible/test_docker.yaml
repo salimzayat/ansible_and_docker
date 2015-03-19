@@ -1,5 +1,6 @@
 ---
 - hosts: local
+  sudo: yes
   tasks:
     - name: download centos image
       shell: /usr/bin/docker pull centos

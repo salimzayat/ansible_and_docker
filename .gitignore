@@ -1,1 +1,3 @@
 .vagrant
+vagrant_rsa
+vagrant_rsa.pub

@@ -1,0 +1,29 @@
+---
+- name: check if docker binary is already installed
+  stat: path=/tmp/docker
+  register: docker_exists 
+
+- name: install Docker binary
+  shell: sudo wget https://get.docker.com/builds/Linux/x86_64/docker-latest -O /tmp/docker
+  when: docker_exists.stat.exists == false
+
+- name: run chmod on docker
+  shell: sudo chmod +x /tmp/docker
+
+- name: symlink docker
+  shell: sudo ln -fs /tmp/docker /usr/bin/docker
+
+- name: create docker file in /etc/init.d
+  template:
+    src: docker 
+    dest: /etc/init.d/docker
+
+- name: run chmod on the init.d file
+  shell: sudo chmod +x /etc/init.d/docker
+
+- name: run docker daemon
+  service:
+    name: docker 
+    state: restarted
+  notify:
+    - verify docker install

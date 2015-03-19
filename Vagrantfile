@@ -4,7 +4,7 @@
 # Author: Gary A. Stafford
 
 # read vm and chef configurations from JSON files
-nodes_config = (JSON.parse(File.read("nodes.json")))['nodes']
+nodes_config = (JSON.parse(File.read("config/nodes.json")))['nodes']
 
 VAGRANTFILE_API_VERSION = "2"
 
@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           id:    port[':id']
       end
 
-      config.vm.hostname = node_name
+      config.vm.hostname = node_values[':hostname']
       config.vm.network :private_network, ip: node_values[':ip']
 
       config.vm.provider :virtualbox do |vb|

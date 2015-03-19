@@ -18,12 +18,12 @@ if grep -q "vagrant@master.example.com" ~/.ssh/authorized_keys; then
 	echo "no need to add to authorized keys"
 else
 	echo "adding to authorized keys"
-	cat /vagrant/vagrant_rsa.pub >> ~/.ssh/authorized_keys
+	cat /vagrant/tmp/vagrant_rsa.pub >> ~/.ssh/authorized_keys
 fi
 
 # time to install some software:
 # cgroup
 sudo yum install -y libcgroup
-sudo sh /vagrant/cgroupfs-mount
+sudo sh /vagrant/config/cgroupfs-mount
 # selinux
 sudo yum install -y libselinux-python

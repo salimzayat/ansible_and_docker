@@ -39,15 +39,15 @@ if [ ! -f ~/.ssh/known_hosts ]; then
 	touch ~/.ssh/known_hosts
 fi
 
-if [ ! -f /vagrant/vagrant_rsa ]; then
+if [ ! -f /vagrant/tmp/vagrant_rsa ]; then
 	echo "creating a new rsa cert"
-	ssh-keygen -t rsa -C "vagrant@master.example.com" -N '' -f /vagrant/vagrant_rsa
+	ssh-keygen -t rsa -C "vagrant@master.example.com" -N '' -f /vagrant/tmp/vagrant_rsa
 fi
 
 if [ ! -f ~/.ssh/vagrant_rsa ]; then
 	echo "creating a new symlink to /vagrant/vagrant_rsa cert files"
-	sudo ln -fs /vagrant/vagrant_rsa ~/.ssh/id_rsa
-	sudo ln -fs /vagrant/vagrant_rsa.pub ~/.ssh/id_rsa.pub
+	sudo ln -fs /vagrant/tmp/vagrant_rsa ~/.ssh/id_rsa
+	sudo ln -fs /vagrant/tmp/vagrant_rsa.pub ~/.ssh/id_rsa.pub
 fi
 
 # # add it to ~/.ssh/known_hosts

@@ -1,0 +1,8 @@
+---
+- name: verify docker install
+  shell: sudo /usr/bin/docker info 
+  register: cmd_result
+
+- assert:
+    that:
+      - "'comand not found' not in cmd_result.stderr"
