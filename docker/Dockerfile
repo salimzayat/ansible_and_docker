@@ -8,6 +8,9 @@ RUN python ez_setup.py
 # and install pip
 RUN easy_install pip
 # copy over the pip requirements file
-ADD requirements.txt /tmp/
+ADD config/requirements.txt /tmp/
 # now that we have pip, we can install all the modules we want
 RUN pip install -r requirements.txt
+
+#### TEST
+#RUN python -c "import django; print(django.get_version())"
