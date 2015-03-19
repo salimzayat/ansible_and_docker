@@ -2,6 +2,20 @@
 
 A simple vagrant setup for spinning up a simple master and agent, installing ansible on the master. The master uses ansible to install Docker on the agent and run a simple 'Hello World' app in docker
 
-# NOTE
+## To run
 
-I am not sure how to set up ssh so that we can run ansible (i.e. ssh) from the master directly to the agent.  I did it by hand, via a simple ssh-keygen.
+```
+$ vagrant up
+$ vagrant ssh master.example.com
+[vagrant@master ~]$ sudo su root
+[root@master vagrant]# ansible-playbook -s /vagrant/install_docker.yaml
+# at this point, you will have to accept the agent's IP into your known_hosts
+[root@master vagrant]# ansible-playbook -s /vagrant/test_docker.yaml 
+```
+
+I tried to set it up so that you can automatically set up the known_hosts on the master, but whatever.  It works.
+
+## Notes
+
+* This runs on CentOS v6.5, which involves a bit more hassle when installing ansible and docker.  See steps here (https://docs.docker.com/installation/centos/#installing-docker-centos-65) and here (http://docs.ansible.com/intro_installation.html#latest-release-via-yum).
+* You will have find a vagrant_rsa and vagrant_rsa.pub files created in your directory.  Ignore them.
