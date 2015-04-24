@@ -1,0 +1,9 @@
+---
+- name: create iptables file
+  template:
+    src: iptables
+    dest: /etc/sysconfig/iptables
+
+- name: restart ip tables service
+  service: name=iptables state=restarted
+

@@ -1,17 +1,22 @@
 {
   "nodes": {
-    // start with the master
-    "master": {
+    "admin_master": {
       ":hostname": "master.example.com",
       ":ip": "192.168.32.5",
       "ports": [],
       ":memory": 1024,
       ":bootstrap": "config/bootstrap-master.sh"
     },
-    // and *now* all the agents
-    "agent": {
-      ":hostname": "agent.example.com",
+    "agent1": {
+      ":hostname": "agent1.example.com",
       ":ip": "192.168.32.10",
+      "ports": [],
+      ":memory": 1024,
+      ":bootstrap": "config/bootstrap-node.sh"
+    },
+    "agent2": {
+      ":hostname": "agent2.example.com",
+      ":ip": "192.168.32.15",
       "ports": [],
       ":memory": 1024,
       ":bootstrap": "config/bootstrap-node.sh"

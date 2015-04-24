@@ -22,10 +22,16 @@ sudo mkdir -p /etc/ansible
 # Configure /etc/hosts file
 echo "" | sudo tee --append /etc/hosts 2> /dev/null && \
 echo "192.168.32.5    master.example.com  master" | sudo tee --append /etc/hosts 2> /dev/null && \
-echo "192.168.32.10   agent.example.com agent" | sudo tee --append /etc/hosts 2> /dev/null && \
+echo "192.168.32.10   agent1.example.com agent1" | sudo tee --append /etc/hosts 2> /dev/null && \
+echo "192.168.32.15   agent2.example.com agent2" | sudo tee --append /etc/hosts 2> /dev/null && \
 
-echo "[local]" > /etc/ansible/hosts
-echo "192.168.32.10" >> /etc/ansible/hosts
+
+echo "[admin_terminal]" > /etc/ansible/hosts
+echo "192.168.32.5" 	>> /etc/ansible/hosts
+echo ""					>> /etc/ansible/hosts
+echo "[agents]" 		>> /etc/ansible/hosts
+echo "192.168.32.10" 	>> /etc/ansible/hosts
+echo "192.168.32.15" 	>> /etc/ansible/hosts
 
 # we need to configure the ssh handshake between the master and agent(s)
 # create the ~/.ssh directory
